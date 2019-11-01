@@ -16,7 +16,15 @@ class MainActivity : AppCompatActivity() {
     private val MESSAGE_KEY: String = "message_from_server"
     private var progressDialog: ProgressDialog? = null
     private var isFetchDone: Boolean = false
-    val SERVER_URL: String = "https://www.dropbox.com/s/gfg17swaefcwere/serverResponse.json?dl=1"
+    /*
+    * AM fomatted Apis url
+    * */
+//    val SERVER_URL: String = "https://www.dropbox.com/s/gfg17swaefcwere/serverResponse.json?dl=1"
+
+    /*
+    * Any Response Structure Api url
+    * */
+    val SERVER_URL: String = "https://www.dropbox.com/s/fgelob1l9f7focn/dummyJson.json?dl=1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,7 +43,27 @@ class MainActivity : AppCompatActivity() {
     private fun fetchServerData() {
         showProgressDialog("please wait")
         val params = RequestParams(ApiCall.GET_REQUEST, SERVER_URL, null, null, null)
-        ApiCall.stringRequest(params, object : RequestComplete {
+
+        ApiCall.stringRequestThirdPartyApi(params, object : RequestComplete {
+            override fun requestSuccess(responseObject: ResponseObject?) {
+                hideProgressDialog()
+                var jsonObject = JSONObject(responseObject?.data as String)
+                welcomeText.text = jsonObject.optString(MESSAGE_KEY)
+                isFetchDone = true
+                buttonHitMe.text = "Delete"
+            }
+
+            override fun requestFailed(responseObject: ResponseObject?) {
+                hideProgressDialog()
+            }
+        })
+
+        /*
+        * AM formatted API calls
+        * */
+        /*
+        *
+        * ApiCall.stringRequest(params, object : RequestComplete {
             override fun requestSuccess(responseObject: ResponseObject?) {
                 hideProgressDialog()
                 val successResponse: JSONObject? = responseObject?.data as JSONObject
@@ -48,6 +76,7 @@ class MainActivity : AppCompatActivity() {
                 hideProgressDialog()
             }
         })
+        * */
 
     }
 

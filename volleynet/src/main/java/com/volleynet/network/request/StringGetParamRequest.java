@@ -26,7 +26,7 @@ public class StringGetParamRequest extends StringRequest {
      * @param errorListener Error listener, or null to ignore errors
      */
     public static StringGetParamRequest createRequest(RequestParams requestParams, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        final String parameterEncodedUrl = requestParams.getUrl() + "?" + Utility.buildQueryString(requestParams.getParameters());
+        final String parameterEncodedUrl = requestParams.getParameters() != null ? requestParams.getUrl() + "?" + Utility.buildQueryString(requestParams.getParameters()) : requestParams.getUrl();
         AppLog.d("CreateRequest URL:" + parameterEncodedUrl);
         RequestParams newRequestParams = new RequestParams(requestParams.getMethod(), parameterEncodedUrl, requestParams.getHeaders(), requestParams.getParameters(), requestParams.getTag());
         return new StringGetParamRequest(newRequestParams, listener, errorListener);
