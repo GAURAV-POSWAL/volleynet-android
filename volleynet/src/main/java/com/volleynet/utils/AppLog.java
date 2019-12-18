@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class AppLog {
     public static boolean DEBUG = true;
-    public static String TAG = "aspiringminds"; //default tag for Log methods
+    public static String TAG = "LoggingTag"; //default tag for Log methods
 
     public static void d(Object message) {
         if (DEBUG) {

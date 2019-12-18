@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         showProgressDialog("please wait")
         val params = RequestParams(ApiCall.GET_REQUEST, SERVER_URL, null, null, null)
 
-        ApiCall.stringRequestThirdPartyApi(params, object : RequestComplete {
+        ApiCall.StringNetworkCall(params, object : RequestComplete {
             override fun requestSuccess(responseObject: ResponseObject?) {
                 hideProgressDialog()
                 var jsonObject = JSONObject(responseObject?.data as String)

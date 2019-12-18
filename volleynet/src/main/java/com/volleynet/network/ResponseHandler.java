@@ -47,7 +47,7 @@ public class ResponseHandler {
         } else {
 
             // Here ApiType is an enum which is used to differentiate
-            // whether the api response is from an Aspiring Minds internal api
+            // whether the api response is from a specific organisation or internal api
             // or a third party api to select which way to parse and process it.
 
             // so, if apiType is AM_API we call handleSuccessForAMApiResponse to parse it for status string, api code, data etc
