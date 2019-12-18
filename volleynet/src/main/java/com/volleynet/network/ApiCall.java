@@ -40,7 +40,7 @@ public class ApiCall {
      * @param requestComplete completion block
      * @return the request object
      */
-    public static StringGetParamRequest StringNetworkCall(final RequestParams requestParam, final RequestComplete requestComplete) {
+    public static StringGetParamRequest stringNetworkCall(final RequestParams requestParam, final RequestComplete requestComplete) {
         final StringGetParamRequest stringGetParamRequest = StringGetParamRequest.createRequest(requestParam, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
